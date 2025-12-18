@@ -1,8 +1,8 @@
 :HL["/Rechera_hp/_next/static/chunks/a7e368d6df9fee5e.css","style"]
-:HL["/Rechera_hp/_next/static/chunks/877e057ab7b9a108.css","style"]
+:HL["/Rechera_hp/_next/static/chunks/71c9aea287b6f9b5.css","style"]
 :HL["/Rechera_hp/_next/static/media/47fe1b7cd6e6ed85-s.p.855a563b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Rechera_hp/_next/static/media/8e6fa89aa22d24ec-s.p.3aec397d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Rechera_hp/_next/static/media/a218039a3287bcfd-s.p.4a23d71b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Rechera_hp/_next/static/media/ad9c66e761fed85a-s.p.2adee7ab.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Rechera_hp/_next/static/media/e2334d715941921e-s.p.d82a9aff.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"buildId":"Ntrnour2IM5jzp_ldciVE","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"courses","paramType":null,"paramKey":"courses","hasRuntimePrefetch":false,"slots":{"children":{"name":"web-sns","paramType":null,"paramKey":"web-sns","hasRuntimePrefetch":false,"slots":{"children":{"name":"slug","paramType":"d","paramKey":"marketing-basics","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"3wzD5O-Xi9ICd1g7Tf31N","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"courses","paramType":null,"paramKey":"courses","hasRuntimePrefetch":false,"slots":{"children":{"name":"web-sns","paramType":null,"paramKey":"web-sns","hasRuntimePrefetch":false,"slots":{"children":{"name":"slug","paramType":"d","paramKey":"marketing-basics","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
