@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # フロントエンド（Next.js）
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:1337
+      - NEXT_PUBLIC_SITE_URL=${SITE_URL:-http://localhost:3000}
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - rechera-network
+
+  # バックエンド（Strapi）
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"
+    environment:
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=rechera
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=${DB_PASSWORD:-rechera_password}
+      - JWT_SECRET=${JWT_SECRET:-your-jwt-secret-change-in-production}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET:-your-admin-jwt-secret-change-in-production}
+      - APP_KEYS=${APP_KEYS:-key1,key2,key3,key4}
+      - API_TOKEN_SALT=${API_TOKEN_SALT:-your-api-token-salt}
+      - TRANSFER_TOKEN_SALT=${TRANSFER_TOKEN_SALT:-your-transfer-token-salt}
+      - NODE_ENV=production
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - strapi-uploads:/opt/app/public/uploads
+    networks:
+      - rechera-network
+
+  # データベース（PostgreSQL）
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=rechera
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-rechera_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - rechera-network
+
+volumes:
+  postgres_data:
+  strapi-uploads:
+
+networks:
+  rechera-network:
+    driver: bridge

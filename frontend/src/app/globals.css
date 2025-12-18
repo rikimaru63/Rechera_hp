@@ -1,0 +1,263 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Rechera Custom Theme */
+@theme inline {
+  /* Fonts */
+  --font-sans: var(--font-noto-sans-jp), "Noto Sans JP", sans-serif;
+  --font-heading: var(--font-poppins), "Poppins", sans-serif;
+
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Rechera Custom Colors */
+  --color-rechera-pink: var(--rechera-pink);
+  --color-rechera-beige: var(--rechera-beige);
+  --color-rechera-greige: var(--rechera-greige);
+  --color-rechera-blue: var(--rechera-blue);
+  --color-rechera-cream: var(--rechera-cream);
+
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+:root {
+  /* Base Radius - 16px for rounded UI */
+  --radius: 1rem;
+
+  /* Rechera Brand Colors */
+  --rechera-pink: #E8CCCC;
+  --rechera-beige: #F4E7E7;
+  --rechera-greige: #CCCACA;
+  --rechera-blue: #CAD9DA;
+  --rechera-cream: #FFF8F0;
+  --rechera-text: #333333;
+  --rechera-text-muted: #666666;
+
+  /* Shadcn Theme Variables - Mapped to Rechera Colors */
+  --background: #FFF8F0;
+  --foreground: #333333;
+  --card: #F4E7E7;
+  --card-foreground: #333333;
+  --popover: #FFF8F0;
+  --popover-foreground: #333333;
+  --primary: #E8CCCC;
+  --primary-foreground: #333333;
+  --secondary: #CAD9DA;
+  --secondary-foreground: #333333;
+  --muted: #F4E7E7;
+  --muted-foreground: #666666;
+  --accent: #E8CCCC;
+  --accent-foreground: #333333;
+  --destructive: #ef4444;
+  --border: #CCCACA;
+  --input: #CCCACA;
+  --ring: #E8CCCC;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-noto-sans-jp), "Noto Sans JP", sans-serif;
+  }
+
+  /* Fluid Typography */
+  h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-family: var(--font-poppins), "Poppins", sans-serif;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-family: var(--font-poppins), "Poppins", sans-serif;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    line-height: 1.4;
+    font-weight: 600;
+    font-family: var(--font-poppins), "Poppins", sans-serif;
+  }
+
+  h4 {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.4;
+    font-weight: 600;
+    font-family: var(--font-poppins), "Poppins", sans-serif;
+  }
+
+  p {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Gradient Background Animation */
+.gradient-background {
+  background: linear-gradient(
+    135deg,
+    #FFF8F0 0%,
+    #F4E7E7 25%,
+    #E8CCCC 50%,
+    #CAD9DA 75%,
+    #FFF8F0 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Blob Animation */
+.blob {
+  animation: blobAnimation 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.blob-1 { animation-delay: 0s; }
+.blob-2 { animation-delay: 2s; }
+.blob-3 { animation-delay: 4s; }
+
+/* Soft Shadow */
+.soft-shadow {
+  box-shadow: 0 2px 8px rgba(51, 51, 68, 0.08);
+}
+
+.soft-shadow-hover {
+  box-shadow: 0 8px 24px rgba(51, 51, 68, 0.12);
+}
+
+/* Smooth Transition */
+.smooth-transition {
+  transition: all 0.3s ease;
+}
+
+/* Rechera Button Styles */
+.btn-rechera {
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background-color: var(--rechera-pink);
+  color: var(--rechera-text);
+}
+
+.btn-rechera:hover {
+  box-shadow: 0 8px 24px rgba(51, 51, 68, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Rechera Card */
+.card-rechera {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(51, 51, 68, 0.08);
+  transition: all 0.3s ease;
+  background-color: var(--rechera-beige);
+}
+
+.card-rechera:hover {
+  box-shadow: 0 8px 24px rgba(51, 51, 68, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Section Background Variants */
+.bg-rechera-cream {
+  background-color: var(--rechera-cream);
+}
+
+.bg-rechera-beige {
+  background-color: var(--rechera-beige);
+}
+
+.bg-rechera-pink {
+  background-color: var(--rechera-pink);
+}
+
+.bg-rechera-blue {
+  background-color: var(--rechera-blue);
+}
+
+/* Text Colors */
+.text-rechera {
+  color: var(--rechera-text);
+}
+
+.text-rechera-muted {
+  color: var(--rechera-text-muted);
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes blobAnimation {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20px, -30px) scale(1.1); }
+  50% { transform: translate(-10px, 20px) scale(0.95); }
+  75% { transform: translate(30px, 10px) scale(1.05); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
