@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Play } from "lucide-react";
+import { Check } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import VideoCard from "@/components/common/VideoCard";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,6 +26,29 @@ const itemVariants = {
     },
   },
 };
+
+const videos = [
+  {
+    title: "マインドセット",
+    youtubeUrl: "https://youtu.be/KF-ESKAvYhA",
+    description: "ビジネスを始める前に大切なマインドセットについて",
+  },
+  {
+    title: "心構えのワーク",
+    youtubeUrl: "https://youtu.be/3_SPCuL38x0",
+    description: "自分と向き合うためのワークシート",
+  },
+  {
+    title: "マインド講義",
+    youtubeUrl: "https://youtu.be/V72ZU4nJd_o",
+    description: "成功するためのマインドについての講義",
+  },
+  {
+    title: "マスターコースのお話",
+    youtubeUrl: "https://youtu.be/xCdX8B0V1U0",
+    description: "マスターコースの概要と進め方",
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -185,29 +209,17 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* Video Placeholder */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-3xl mx-auto"
-          >
-            <Card className="bg-[var(--rechera-beige)] border-none rounded-3xl soft-shadow overflow-hidden">
-              <CardContent className="p-0">
-                <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-[var(--rechera-beige)] to-[var(--rechera-pink)]/20">
-                  <div className="text-center">
-                    <div className="w-20 h-20 rounded-full bg-[var(--rechera-pink)]/40 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-[var(--rechera-pink)]/60 transition-colors">
-                      <Play className="w-8 h-8 text-[var(--rechera-text)] ml-1" />
-                    </div>
-                    <p className="text-sm text-[var(--rechera-text-muted)]">
-                      動画プレースホルダー
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          {/* Video Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {videos.map((video, index) => (
+              <VideoCard
+                key={index}
+                title={video.title}
+                youtubeUrl={video.youtubeUrl}
+                description={video.description}
+              />
+            ))}
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
