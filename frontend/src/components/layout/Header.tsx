@@ -37,6 +37,7 @@ const navigation = {
         { name: "光回線乗り換え", href: "/courses/sales/internet" },
         { name: "iPhone", href: "/courses/sales/iphone" },
         { name: "物販情報noteまとめ", href: "/courses/sales/note-summary" },
+        { name: "ロードマップ", href: "/courses/sales/roadmap" },
       ],
     },
     {
