@@ -1,10 +1,50 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+
+// Media items for the slider
+const mediaItems = [
+  { type: "image", src: "/activity/img-01.jpg", alt: "コミュニティ活動" },
+  { type: "image", src: "/activity/img-02.jpg", alt: "交流会" },
+  { type: "image", src: "/activity/img-03.jpg", alt: "学習風景" },
+  { type: "image", src: "/activity/img-04.jpg", alt: "メンバー交流" },
+  { type: "image", src: "/activity/img-05.jpg", alt: "セミナー" },
+  { type: "image", src: "/activity/img-06.png", alt: "オンラインミーティング" },
+  { type: "image", src: "/activity/img-07.jpg", alt: "活動風景1" },
+  { type: "image", src: "/activity/img-08.jpg", alt: "活動風景2" },
+  { type: "video", src: "/activity/video-01.mp4", alt: "活動動画1" },
+  { type: "video", src: "/activity/video-02.mp4", alt: "活動動画2" },
+  { type: "video", src: "/activity/video-03.mp4", alt: "活動動画3" },
+];
 
 export default function InstructorSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % mediaItems.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
+  }, []);
+
+  // Auto-play for images only
+  useEffect(() => {
+    if (!isAutoPlaying || mediaItems[currentIndex].type === "video") return;
+
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [currentIndex, isAutoPlaying, nextSlide]);
+
+  const currentItem = mediaItems[currentIndex];
+
   return (
     <section className="py-20 lg:py-32 bg-[var(--rechera-cream)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -16,13 +56,13 @@ export default function InstructorSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-[var(--rechera-text)] mb-4">講師紹介</h2>
+          <h2 className="text-[var(--rechera-text)] mb-4">活動紹介</h2>
           <p className="text-[var(--rechera-text-muted)] max-w-2xl mx-auto">
-            あなたの成長をサポートする、経験豊富な講師をご紹介します。
+            Recheraコミュニティでの活動の様子をご紹介します。
           </p>
         </motion.div>
 
-        {/* Instructor Card */}
+        {/* Slider Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,61 +71,94 @@ export default function InstructorSection() {
           className="max-w-4xl mx-auto"
         >
           <div className="bg-[var(--rechera-beige)] rounded-3xl soft-shadow overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Image */}
-              <div className="relative aspect-square lg:aspect-auto lg:min-h-[400px] bg-[var(--rechera-pink)]/20">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Placeholder for instructor image */}
-                  <div className="w-48 h-48 rounded-full bg-[var(--rechera-pink)]/30 flex items-center justify-center">
-                    <span className="text-6xl text-[var(--rechera-text)]/30">R</span>
-                  </div>
+            {/* Media Container */}
+            <div
+              className="relative aspect-[16/10] bg-[var(--rechera-pink)]/10"
+              onMouseEnter={() => setIsAutoPlaying(false)}
+              onMouseLeave={() => setIsAutoPlaying(true)}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0"
+                >
+                  {currentItem.type === "image" ? (
+                    <Image
+                      src={currentItem.src}
+                      alt={currentItem.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 896px"
+                      priority={currentIndex === 0}
+                    />
+                  ) : (
+                    <video
+                      src={currentItem.src}
+                      className="w-full h-full object-cover"
+                      controls
+                      playsInline
+                      onPlay={() => setIsAutoPlaying(false)}
+                      onPause={() => setIsAutoPlaying(true)}
+                      onEnded={() => {
+                        setIsAutoPlaying(true);
+                        nextSlide();
+                      }}
+                    />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-[var(--rechera-text)] hover:bg-white transition-colors shadow-md"
+                aria-label="前へ"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-[var(--rechera-text)] hover:bg-white transition-colors shadow-md"
+                aria-label="次へ"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
+              {/* Video indicator */}
+              {currentItem.type === "video" && (
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/50 text-white text-sm flex items-center gap-1">
+                  <Play className="w-4 h-4" />
+                  動画
                 </div>
+              )}
+            </div>
+
+            {/* Dots Navigation */}
+            <div className="p-6">
+              <div className="flex justify-center gap-2 flex-wrap">
+                {mediaItems.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      index === currentIndex
+                        ? "bg-[var(--rechera-pink)] w-8"
+                        : item.type === "video"
+                        ? "bg-[var(--rechera-blue)]/50 hover:bg-[var(--rechera-blue)]"
+                        : "bg-[var(--rechera-greige)]/50 hover:bg-[var(--rechera-greige)]"
+                    }`}
+                    aria-label={`スライド ${index + 1}`}
+                  />
+                ))}
               </div>
-
-              {/* Content */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <div className="mb-6">
-                  <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--rechera-pink)]/40 text-sm font-medium text-[var(--rechera-text)] mb-4">
-                    Founder & Instructor
-                  </span>
-                  <h3 className="text-2xl font-bold text-[var(--rechera-text)] mb-2">
-                    講師名
-                  </h3>
-                  <p className="text-[var(--rechera-text-muted)]">
-                    Rechera 代表 / SNSマーケティング講師
-                  </p>
-                </div>
-
-                {/* Quote */}
-                <div className="relative mb-6">
-                  <Quote className="absolute -top-2 -left-2 w-8 h-8 text-[var(--rechera-pink)]/40" />
-                  <blockquote className="pl-8 text-[var(--rechera-text)] leading-relaxed">
-                    私自身も子育てをしながら、在宅ワークで経済的自立を実現しました。
-                    同じ悩みを持つ女性たちに、私が学んできたことをお伝えしたい。
-                    Recheraは、あなたの「個」が輝ける場所です。
-                  </blockquote>
-                </div>
-
-                {/* Achievements */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-4 bg-[var(--rechera-cream)] rounded-2xl">
-                    <div className="text-2xl font-bold text-[var(--rechera-text)]">
-                      500+
-                    </div>
-                    <div className="text-sm text-[var(--rechera-text-muted)]">
-                      受講生
-                    </div>
-                  </div>
-                  <div className="text-center p-4 bg-[var(--rechera-cream)] rounded-2xl">
-                    <div className="text-2xl font-bold text-[var(--rechera-text)]">
-                      5年+
-                    </div>
-                    <div className="text-sm text-[var(--rechera-text-muted)]">
-                      講師歴
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <p className="text-center text-sm text-[var(--rechera-text-muted)] mt-4">
+                {currentIndex + 1} / {mediaItems.length}
+                {currentItem.type === "video" && " (動画)"}
+              </p>
             </div>
           </div>
         </motion.div>
