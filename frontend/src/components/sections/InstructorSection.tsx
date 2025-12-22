@@ -91,14 +91,14 @@ export default function InstructorSection() {
                       src={currentItem.src}
                       alt={currentItem.alt}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 768px) 100vw, 896px"
                       priority={currentIndex === 0}
                     />
                   ) : (
                     <video
                       src={currentItem.src}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       controls
                       playsInline
                       onPlay={() => setIsAutoPlaying(false)}
