@@ -25,6 +25,7 @@ const navigation = {
     { name: "ホーム", href: "/" },
     { name: "はじめに", href: "/about" },
     { name: "WEBデザイン", href: "/courses/web-design" },
+    { name: "ZOOMアーカイブ", href: "/courses/business/zoom-archive" },
   ],
   courses: [
     {
@@ -68,7 +69,6 @@ const navigation = {
         { name: "売れる営業のポイント", href: "/courses/business/sales-points" },
         { name: "個別相談の流れマニュアル", href: "/courses/business/consultation" },
         { name: "エデュケーター公開用マインドマップ", href: "/courses/business/mindmap" },
-        { name: "ZOOMアーカイブ", href: "/courses/business/zoom-archive" },
         { name: "Discord使用方法", href: "/courses/business/discord" },
       ],
     },
