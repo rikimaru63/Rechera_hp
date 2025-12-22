@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight, BookOpen, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import VideoCard from "@/components/common/VideoCard";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import type { Course } from "@/lib/courses";
 
 interface BusinessCourseDetailClientProps {
@@ -74,6 +76,25 @@ export default function BusinessCourseDetailClient({
           </motion.div>
         </div>
       </section>
+
+      {/* Markdown Content Section */}
+      {course.content && !isZoomArchive && (
+        <section className="py-16 lg:py-24 bg-[var(--rechera-cream)]">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="prose prose-lg max-w-none prose-headings:text-[var(--rechera-text)] prose-p:text-[var(--rechera-text-muted)] prose-strong:text-[var(--rechera-text)] prose-a:text-[var(--rechera-greige)] prose-a:no-underline hover:prose-a:underline prose-ul:text-[var(--rechera-text-muted)] prose-ol:text-[var(--rechera-text-muted)] prose-li:marker:text-[var(--rechera-greige)] prose-blockquote:border-l-[var(--rechera-greige)] prose-blockquote:text-[var(--rechera-text-muted)] prose-code:bg-[var(--rechera-beige)] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[var(--rechera-text)] prose-pre:bg-[var(--rechera-beige)] prose-table:text-[var(--rechera-text-muted)] prose-th:text-[var(--rechera-text)] prose-th:bg-[var(--rechera-greige)]/20"
+            >
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {course.content}
+              </ReactMarkdown>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Zoom Archive Section */}
       {isZoomArchive && (
