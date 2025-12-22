@@ -24,6 +24,7 @@ const navigation = {
   main: [
     { name: "ホーム", href: "/" },
     { name: "はじめに", href: "/about" },
+    { name: "WEBデザイン", href: "/courses/web-design" },
   ],
   courses: [
     {
@@ -38,10 +39,9 @@ const navigation = {
       ],
     },
     {
-      name: "Web/SNS関連",
+      name: "SNS関連",
       href: "/courses/web-sns",
       items: [
-        { name: "WEBデザイン", href: "/courses/web-sns/design" },
         { name: "SNSマーケティング", href: "/courses/web-sns/sns-marketing" },
         { name: "マーケティングとは", href: "/courses/web-sns/marketing-basics" },
         { name: "インスタを使うべき理由", href: "/courses/web-sns/why-instagram" },
