@@ -13,8 +13,6 @@ const mediaItems = [
   { type: "image", src: "/activity/img-04.jpg", alt: "メンバー交流" },
   { type: "image", src: "/activity/img-05.jpg", alt: "セミナー" },
   { type: "image", src: "/activity/img-06.png", alt: "オンラインミーティング" },
-  { type: "image", src: "/activity/img-07.jpg", alt: "活動風景1" },
-  { type: "image", src: "/activity/img-08.jpg", alt: "活動風景2" },
   { type: "video", src: "/activity/video-01.mp4", alt: "活動動画1" },
   { type: "video", src: "/activity/video-02.mp4", alt: "活動動画2" },
   { type: "video", src: "/activity/video-03.mp4", alt: "活動動画3" },
