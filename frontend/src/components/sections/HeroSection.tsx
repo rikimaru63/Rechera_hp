@@ -20,21 +20,28 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="space-y-8"
         >
-          {/* Main Heading */}
-          <h1 className="text-[var(--rechera-text)]">
-            洗練された価値ある知識を付ける
-          </h1>
+          {/* Rechera Logo - Large Centered */}
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-[var(--rechera-text)]"
+            style={{
+              fontFamily: "var(--font-poppins), Poppins, sans-serif",
+              textShadow: "0 4px 20px rgba(232, 204, 204, 0.3)"
+            }}
+          >
+            Rechera
+          </motion.h1>
 
-          {/* Subtext */}
+          {/* Main Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="text-lg sm:text-xl text-[var(--rechera-text-muted)] max-w-2xl mx-auto"
+            className="text-xl sm:text-2xl md:text-3xl text-[var(--rechera-text)] font-medium max-w-3xl mx-auto"
           >
-            正解は一つじゃない。それぞれの色を混ぜて、
-            <br className="hidden sm:block" />
-            自分だけの働き方を描こう
+            あなたらしい働き方を育てていく場所
           </motion.p>
 
           {/* Brand Tag */}
@@ -49,11 +56,23 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+            className="text-lg sm:text-xl text-[var(--rechera-text-muted)] max-w-2xl mx-auto"
+          >
+            正解は一つじゃない。それぞれの色を混ぜて、
+            <br className="hidden sm:block" />
+            自分だけの働き方を描こう。
+          </motion.p>
+
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
           >
             <Link href="/about">

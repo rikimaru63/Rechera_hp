@@ -7,21 +7,24 @@ import { Card, CardContent } from "@/components/ui/card";
 const features = [
   {
     icon: BookOpen,
+    number: "01",
     title: "体系的な学び",
     description:
-      "物販からWeb/SNSマーケティングまで、幅広いスキルを習得できます。初心者でも安心して学べるカリキュラムをご用意しています。",
+      "物販からWeb・SNSマーケティングまで、今の自分に必要な順番で学べるカリキュラムを用意しています。",
   },
   {
     icon: Users,
+    number: "02",
     title: "居心地の良いコミュニティ",
     description:
-      "アトリエのような安心感のある空間で、仲間とともに成長できます。同じ目標を持つ仲間との繋がりが、あなたの成長を加速させます。",
+      "Recheraは、競争したり、比べ合ったりする場所ではなく、アトリエのような、あたたかな空間で同じように考え、進んでいる仲間と自分のペースで成長していけます。",
   },
   {
     icon: Sparkles,
+    number: "03",
     title: "個が輝く場所",
     description:
-      "母でも妻でもなく一人の人間として、あなたらしく輝ける場所です。経済的・精神的な自立を目指し、最高に愛おしい人生を手に入れましょう。",
+      "母でも、妻でも、何者かにならなくてもいい。「あなた」として、大切に扱われる場所です。経済的にも、気持ちの面でも、自分の人生を自分で選べる力を少しずつ育てていきます。",
   },
 ];
 
@@ -59,12 +62,19 @@ export default function FeaturesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-[var(--rechera-text)] mb-4">
+          <h2 className="text-[var(--rechera-text)] mb-6">
             Recheraで得られるもの
           </h2>
-          <p className="text-[var(--rechera-text-muted)] max-w-2xl mx-auto">
-            洗練された価値ある知識を身につけ、高単価で自由な時間とお金のゆとりを作る。
-            経済的・精神的に自立した、あなたにとって最高の人生を。
+          <p className="text-[var(--rechera-text-muted)] max-w-2xl mx-auto text-lg leading-relaxed">
+            「在宅で働きたい」
+            <br />
+            「収入の不安を減らしたい」
+            <br />
+            「何から始めればいいかわからない」
+            <br />
+            <span className="mt-4 block">
+              そんな状態からでも、安心して一歩ずつ進めるように設計されています。
+            </span>
           </p>
         </motion.div>
 
@@ -80,13 +90,18 @@ export default function FeaturesSection() {
             <motion.div key={index} variants={itemVariants}>
               <Card className="h-full bg-[var(--rechera-cream)] border-none rounded-3xl soft-shadow hover:soft-shadow-hover transition-all duration-300 hover:translate-y-[-4px]">
                 <CardContent className="p-8">
-                  {/* Icon */}
-                  <div className="w-14 h-14 rounded-2xl bg-[var(--rechera-pink)]/30 flex items-center justify-center mb-6">
-                    <feature.icon className="w-7 h-7 text-[var(--rechera-text)]" />
+                  {/* Number & Icon */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="text-4xl font-bold text-[var(--rechera-pink)]/60" style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}>
+                      {feature.number}
+                    </span>
+                    <div className="w-12 h-12 rounded-2xl bg-[var(--rechera-pink)]/30 flex items-center justify-center">
+                      <feature.icon className="w-6 h-6 text-[var(--rechera-text)]" />
+                    </div>
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-semibold text-[var(--rechera-text)] mb-3">
+                  <h3 className="text-xl font-semibold text-[var(--rechera-text)] mb-4">
                     {feature.title}
                   </h3>
                   <p className="text-[var(--rechera-text-muted)] leading-relaxed">
