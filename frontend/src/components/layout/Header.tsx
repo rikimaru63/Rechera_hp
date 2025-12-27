@@ -49,23 +49,26 @@ const navigation = {
     name: "SNS関連",
     href: "/courses/web-sns",
     items: [
-      { name: "SNSマーケティング", href: "/courses/web-sns/sns-marketing" },
-      { name: "マーケティングとは", href: "/courses/web-sns/marketing-basics" },
-      { name: "インスタを使うべき理由", href: "/courses/web-sns/why-instagram" },
-      { name: "初期アカウント設定方法", href: "/courses/web-sns/account-setup" },
+      // はじめに
+      { name: "マスターコースの流れ", href: "/courses/web-sns/master-course-flow" },
+      // 基礎知識
+      { name: "SNSマーケティングとは", href: "/courses/web-sns/sns-marketing" },
+      { name: "インスタを使う理由", href: "/courses/web-sns/why-instagram" },
+      { name: "初期アカウント設定", href: "/courses/web-sns/account-setup" },
+      { name: "各機能の目的と活用方法", href: "/courses/web-sns/features" },
+      { name: "伝わるライティング・言語化", href: "/courses/web-sns/writing" },
+      // コンセプト設計
       { name: "永久不変のフォローされるプロフィール", href: "/courses/web-sns/profile" },
-      { name: "アカウントコンセプト設計ワーク", href: "/courses/web-sns/concept-design" },
+      { name: "コンセプト設計ワーク", href: "/courses/web-sns/concept-design" },
       { name: "ターゲット設定３つの原則", href: "/courses/web-sns/target-setting" },
-      { name: "基礎・各機能の目的と活用方法", href: "/courses/web-sns/features" },
-      { name: "インサイトの見方と分析", href: "/courses/web-sns/insights" },
-      { name: "ハッシュタグ完全攻略", href: "/courses/web-sns/hashtags" },
-      { name: "基本のレイアウト", href: "/courses/web-sns/layout" },
-      { name: "投稿チェックリスト", href: "/courses/web-sns/post-checklist" },
+      // フィード・リール・チェックリスト
       { name: "投稿コンテンツ管理シート", href: "/courses/web-sns/content-management" },
-      { name: "インスタ運用で使えるキラーワード", href: "/courses/web-sns/killer-words" },
-      { name: "ライティング・言語化", href: "/courses/web-sns/writing" },
+      { name: "リール競合分析", href: "/courses/web-sns/reel-analysis" },
+      { name: "投稿チェックリスト", href: "/courses/web-sns/post-checklist" },
+      // インサイト・ストーリー・LINE
+      { name: "インサイトの見方と分析", href: "/courses/web-sns/insights" },
       { name: "差がつく！ストーリー運用", href: "/courses/web-sns/stories" },
-      { name: "公式ライン作成方法", href: "/courses/web-sns/line-official" },
+      { name: "LINE公式作成方法", href: "/courses/web-sns/line-official" },
     ],
   },
   // その他（ドロップダウン）

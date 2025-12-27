@@ -4,6 +4,7 @@ export type Course = {
   description: string;
   content: string;
   category: "sales" | "web-sns" | "business";
+  subcategory?: string;
 };
 
 export type CourseCategory = {
@@ -410,31 +411,62 @@ Qoo10で iPhone 17 Pro Max 256GB を20万円で購入 ＋ 楽天リーベイツ 
   },
 ];
 
+// SNS関連のサブカテゴリ定義
+export const snsSubcategories = [
+  { slug: "intro", name: "はじめに" },
+  { slug: "basics", name: "基礎知識" },
+  { slug: "concept", name: "コンセプト設計" },
+  { slug: "feed", name: "フィード投稿" },
+  { slug: "reel", name: "リール投稿" },
+  { slug: "checklist", name: "チェックリスト" },
+  { slug: "insight", name: "インサイト分析" },
+  { slug: "story", name: "ストーリー運用" },
+  { slug: "line", name: "LINE公式" },
+];
+
 export const webSnsCourses: Course[] = [
+  // はじめに
   {
-    slug: "design",
-    title: "WEBデザイン",
-    description: "WEBデザインの基礎からトレンドまでを学びます。",
+    slug: "master-course-flow",
+    title: "マスターコースの流れ",
+    description: "SNSマーケティングマスターコースの全体的な流れを説明します。",
     content: `
-# WEBデザインコース
+# マスターコースの流れ
 
-WEBデザインの基礎から最新トレンドまでを学べるコースです。
+SNSマーケティングマスターコースへようこそ！このページではコースの全体的な流れを説明します。
 
-## このコースで学べること
+---
 
-- デザインの基本原則
-- カラーとタイポグラフィ
-- レイアウトの考え方
-- 実践的なデザインツールの使い方
+## コース概要
+
+このコースでは、SNSマーケティングの基礎から実践まで、体系的に学んでいきます。
+
+### 学習の進め方
+
+1. **基礎知識**から順番に学習を進めてください
+2. 各セクションの動画・資料を確認し、実践ワークに取り組みましょう
+3. わからないことはDiscordで質問してください
+
+---
+
+## タスク管理表
+
+学習の進捗を管理するためのスプレッドシートをご用意しています。
+
+[📊 タスク管理表を開く](https://docs.google.com/spreadsheets/d/1w-eIOcaJ7YiokkTjvXsh32AFx5t64FdSqd3IH8bXcRY/edit?gid=2026171935#gid=2026171935)
+
+> ⚠️ スプレッドシートは必ずコピーしてからご使用ください
     `,
     category: "web-sns",
+    subcategory: "intro",
   },
+  // 基礎知識
   {
     slug: "sns-marketing",
-    title: "SNSマーケティング",
-    description: "SNSを活用したマーケティング戦略を学びます。",
+    title: "SNSマーケティングとは",
+    description: "SNSを活用したマーケティング戦略の基礎を学びます。",
     content: `
-# SNSマーケティングコース
+# SNSマーケティングとは
 
 SNSを活用した効果的なマーケティング戦略を学べるコースです。
 
@@ -446,6 +478,7 @@ SNSを活用した効果的なマーケティング戦略を学べるコース�
 - 分析と改善のサイクル
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "marketing-basics",
@@ -539,6 +572,7 @@ Webマーケティングスキルに長けている人の市場価値が高く�
 この投稿がエデュケーターの皆さんにとってより良い学びの参考になれば幸いです！
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "why-instagram",
@@ -643,6 +677,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 これがインスタを使うべき4つ目の理由です。
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "account-setup",
@@ -726,6 +761,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 **2段階認証の設定**は乗っ取り防止など、セキュリティのためにしておくことをおすすめします！
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "profile",
@@ -902,6 +938,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 どんなマーケッターでも1ヶ月・数ヶ月単位で修正をしているので、まずは自分のアカウント・ターゲットに沿ったプロフィールを考えてみましょう！
     `,
     category: "web-sns",
+    subcategory: "concept",
   },
   {
     slug: "concept-design",
@@ -954,6 +991,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 このワークを完了させてから、実際のアカウント運用を開始しましょう！
     `,
     category: "web-sns",
+    subcategory: "concept",
   },
   {
     slug: "target-setting",
@@ -1061,6 +1099,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 | ③都合のいい人を生み出さない | 実在するか確認する |
     `,
     category: "web-sns",
+    subcategory: "concept",
   },
   {
     slug: "features",
@@ -1079,6 +1118,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - IGTVとライブ配信
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "insights",
@@ -1097,6 +1137,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - データに基づく改善
     `,
     category: "web-sns",
+    subcategory: "insight",
   },
   {
     slug: "hashtags",
@@ -1115,6 +1156,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - タグ戦略の最適化
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "layout",
@@ -1133,6 +1175,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - 投稿の配置パターン
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "post-checklist",
@@ -1152,6 +1195,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - [ ] 投稿時間は最適か
     `,
     category: "web-sns",
+    subcategory: "checklist",
   },
   {
     slug: "content-management",
@@ -1170,6 +1214,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - 改善点の追跡
     `,
     category: "web-sns",
+    subcategory: "feed",
   },
   {
     slug: "killer-words",
@@ -1188,6 +1233,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - シェアされやすい言葉
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "writing",
@@ -1206,6 +1252,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - コピーライティングの基礎
     `,
     category: "web-sns",
+    subcategory: "basics",
   },
   {
     slug: "stories",
@@ -1224,6 +1271,7 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - ストーリーズ専用コンテンツの作成
     `,
     category: "web-sns",
+    subcategory: "story",
   },
   {
     slug: "line-official",
@@ -1242,6 +1290,89 @@ SNSで収益があがる流れは**「集客・ファン化・教育・販売」
 - リッチメニューの作成
     `,
     category: "web-sns",
+    subcategory: "line",
+  },
+  // リール投稿
+  {
+    slug: "reel-analysis",
+    title: "リール競合分析",
+    description: "競合アカウントのリール投稿を分析して、自分のコンテンツに活かす方法を学びます。",
+    content: `
+# リール競合分析
+
+競合アカウントのリール投稿を分析して、自分のコンテンツ制作に活かす方法を学べるコースです。
+
+## 動画で学ぶ
+
+以下の動画でリール競合分析の方法を詳しく解説しています。
+
+[動画を視聴する](https://youtu.be/muVMYHLD-H4)
+
+## このコースで学べること
+
+- 競合アカウントの選び方
+- リールの分析ポイント
+- バズるリールの共通点
+- 自分のコンテンツへの応用方法
+    `,
+    category: "web-sns",
+    subcategory: "reel",
+  },
+  {
+    slug: "ai-analysis",
+    title: "AI活用した分析",
+    description: "AIを活用してリール投稿の分析と改善を効率化する方法を学びます。",
+    content: `
+# AI活用した分析
+
+AIを活用してリール投稿の分析と改善を効率化する方法を学べるコースです。
+
+## 動画で学ぶ
+
+以下の動画でAI活用した分析方法を詳しく解説しています。
+
+[動画を視聴する](https://youtu.be/TJthMM36KzE)
+
+## このコースで学べること
+
+- AIツールの選び方
+- データ分析の自動化
+- インサイトの抽出方法
+- 効率的な改善サイクル
+    `,
+    category: "web-sns",
+    subcategory: "reel",
+  },
+  {
+    slug: "reel-script",
+    title: "リール台本作成シート",
+    description: "効果的なリール台本を作成するためのテンプレートを提供します。",
+    content: `
+# リール台本作成シート
+
+効果的なリール台本を作成するためのテンプレートを学べるコースです。
+
+## テンプレートを使う
+
+以下のNotionテンプレートを使って、リール台本を作成しましょう。
+
+[リール台本作成シートを開く](https://gossamer-rotate-72c.notion.site/159694d72a4f81738eecc6b818c4e35e)
+
+## テンプレートの使い方
+
+1. 上記リンクからNotionページを開く
+2. テンプレートを自分のNotionにコピー
+3. 各項目に沿って台本を作成
+4. 完成したらリール撮影に活用
+
+## 台本作成のポイント
+
+- 最初の1秒で視聴者の注意を引く
+- 問題提起→解決策の流れ
+- 明確なCTA（行動喚起）を入れる
+    `,
+    category: "web-sns",
+    subcategory: "reel",
   },
 ];
 
