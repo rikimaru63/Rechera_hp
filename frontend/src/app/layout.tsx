@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Poppins } from "next/font/google";
 import "./globals.css";
-import { Header, Footer } from "@/components/layout";
+import { AuthProvider } from "@/contexts/AuthContext";
+import AuthenticatedLayout from "@/components/layout/AuthenticatedLayout";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -49,9 +50,9 @@ export default function RootLayout({
       <body
         className={`${notoSansJP.variable} ${poppins.variable} font-sans antialiased`}
       >
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <AuthenticatedLayout>{children}</AuthenticatedLayout>
+        </AuthProvider>
       </body>
     </html>
   );

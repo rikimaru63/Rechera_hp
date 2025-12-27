@@ -3,13 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, User } from "lucide-react";
+import { Menu, X, ChevronDown, User, LogOut, Crown, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -18,6 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useAuth } from "@/contexts/AuthContext";
 
 // Navigation Structure
 // 順番: ホーム、はじめに、Discord使用方法、zoomアーカイブ、物販関連、Canvaデザイン、SNS関連、その他
@@ -85,6 +87,7 @@ const navigation = {
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isAuthenticated, canAccessSNS, isAdmin, logout } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[var(--rechera-cream)]/95 backdrop-blur-sm border-b border-[var(--rechera-greige)]/20">
@@ -147,30 +150,33 @@ export default function Header() {
               {navigation.canva.name}
             </Link>
 
-            {/* SNS関連（ドロップダウン） */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl transition-all duration-300">
-                  {navigation.sns.name}
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-64 bg-[var(--rechera-cream)] border-[var(--rechera-greige)]/30 rounded-2xl shadow-lg max-h-[70vh] overflow-y-auto"
-                align="start"
-              >
-                {navigation.sns.items.map((item) => (
-                  <DropdownMenuItem key={item.href} asChild>
-                    <Link
-                      href={item.href}
-                      className="w-full px-4 py-2.5 text-sm text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl cursor-pointer transition-all duration-300"
-                    >
-                      {item.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* SNS関連（ドロップダウン）- マスターコースのみ */}
+            {canAccessSNS && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl transition-all duration-300">
+                    <Crown className="h-3.5 w-3.5 mr-1 text-[var(--rechera-pink)]" />
+                    {navigation.sns.name}
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-64 bg-[var(--rechera-cream)] border-[var(--rechera-greige)]/30 rounded-2xl shadow-lg max-h-[70vh] overflow-y-auto"
+                  align="start"
+                >
+                  {navigation.sns.items.map((item) => (
+                    <DropdownMenuItem key={item.href} asChild>
+                      <Link
+                        href={item.href}
+                        className="w-full px-4 py-2.5 text-sm text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl cursor-pointer transition-all duration-300"
+                      >
+                        {item.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
 
             {/* その他（ドロップダウン） */}
             <DropdownMenu>
@@ -198,17 +204,69 @@ export default function Header() {
             </DropdownMenu>
           </div>
 
-          {/* Login Button (Desktop) */}
+          {/* User Menu (Desktop) */}
           <div className="hidden lg:flex lg:items-center lg:gap-4">
-            <Link href="/login">
-              <Button
-                variant="outline"
-                className="rounded-2xl border-[var(--rechera-pink)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 transition-all duration-300"
-              >
-                <User className="h-4 w-4 mr-2" />
-                ログイン
-              </Button>
-            </Link>
+            {isAuthenticated && user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="rounded-2xl border-[var(--rechera-pink)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 transition-all duration-300"
+                  >
+                    <User className="h-4 w-4 mr-2" />
+                    {user.username}
+                    {user.courseType === "master" && (
+                      <Crown className="h-3.5 w-3.5 ml-1 text-[var(--rechera-pink)]" />
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-56 bg-[var(--rechera-cream)] border-[var(--rechera-greige)]/30 rounded-2xl shadow-lg"
+                  align="end"
+                >
+                  <div className="px-4 py-3">
+                    <p className="text-sm font-medium text-[var(--rechera-text)]">
+                      {user.username}
+                    </p>
+                    <p className="text-xs text-[var(--rechera-text-muted)]">
+                      {user.email}
+                    </p>
+                    <p className="text-xs text-[var(--rechera-pink)] mt-1">
+                      {user.courseType === "master" ? "マスターコース" : "スタンダードコース"}
+                    </p>
+                  </div>
+                  <DropdownMenuSeparator className="bg-[var(--rechera-greige)]/20" />
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link
+                        href="/admin"
+                        className="px-4 py-2.5 text-sm text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl cursor-pointer transition-all duration-300"
+                      >
+                        <Settings className="h-4 w-4 mr-2" />
+                        管理画面
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem
+                    onClick={logout}
+                    className="px-4 py-2.5 text-sm text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl cursor-pointer transition-all duration-300"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    ログアウト
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link href="/login">
+                <Button
+                  variant="outline"
+                  className="rounded-2xl border-[var(--rechera-pink)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 transition-all duration-300"
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  ログイン
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu */}
@@ -282,26 +340,29 @@ export default function Header() {
                   </Link>
 
                   <Accordion type="single" collapsible className="w-full">
-                    {/* SNS関連 */}
-                    <AccordionItem value="sns" className="border-b-0">
-                      <AccordionTrigger className="px-4 py-3 text-base font-medium text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl hover:no-underline transition-all duration-300">
-                        {navigation.sns.name}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div className="flex flex-col gap-1 pl-4">
-                          {navigation.sns.items.map((item) => (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className="px-4 py-2.5 text-sm text-[var(--rechera-text-muted)] hover:text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/20 rounded-xl transition-all duration-300"
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
+                    {/* SNS関連 - マスターコースのみ */}
+                    {canAccessSNS && (
+                      <AccordionItem value="sns" className="border-b-0">
+                        <AccordionTrigger className="px-4 py-3 text-base font-medium text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 rounded-xl hover:no-underline transition-all duration-300">
+                          <Crown className="h-3.5 w-3.5 mr-2 text-[var(--rechera-pink)]" />
+                          {navigation.sns.name}
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <div className="flex flex-col gap-1 pl-4">
+                            {navigation.sns.items.map((item) => (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                className="px-4 py-2.5 text-sm text-[var(--rechera-text-muted)] hover:text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/20 rounded-xl transition-all duration-300"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    )}
 
                     {/* その他 */}
                     <AccordionItem value="other" className="border-b-0">
@@ -326,14 +387,55 @@ export default function Header() {
                   </Accordion>
                 </nav>
 
-                {/* Mobile Login Button */}
+                {/* Mobile User Section */}
                 <div className="pt-4 border-t border-[var(--rechera-greige)]/30">
-                  <Link href="/login" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full rounded-2xl bg-[var(--rechera-pink)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/80 transition-all duration-300">
-                      <User className="h-4 w-4 mr-2" />
-                      ログイン
-                    </Button>
-                  </Link>
+                  {isAuthenticated && user ? (
+                    <div className="space-y-4">
+                      <div className="px-4 py-3 bg-[var(--rechera-beige)] rounded-2xl">
+                        <p className="text-sm font-medium text-[var(--rechera-text)]">
+                          {user.username}
+                          {user.courseType === "master" && (
+                            <Crown className="inline h-3.5 w-3.5 ml-1 text-[var(--rechera-pink)]" />
+                          )}
+                        </p>
+                        <p className="text-xs text-[var(--rechera-text-muted)]">
+                          {user.email}
+                        </p>
+                        <p className="text-xs text-[var(--rechera-pink)] mt-1">
+                          {user.courseType === "master" ? "マスターコース" : "スタンダードコース"}
+                        </p>
+                      </div>
+                      {isAdmin && (
+                        <Link href="/admin" onClick={() => setIsOpen(false)}>
+                          <Button
+                            variant="outline"
+                            className="w-full rounded-2xl border-[var(--rechera-pink)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 transition-all duration-300"
+                          >
+                            <Settings className="h-4 w-4 mr-2" />
+                            管理画面
+                          </Button>
+                        </Link>
+                      )}
+                      <Button
+                        onClick={() => {
+                          logout();
+                          setIsOpen(false);
+                        }}
+                        variant="outline"
+                        className="w-full rounded-2xl border-[var(--rechera-greige)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/30 transition-all duration-300"
+                      >
+                        <LogOut className="h-4 w-4 mr-2" />
+                        ログアウト
+                      </Button>
+                    </div>
+                  ) : (
+                    <Link href="/login" onClick={() => setIsOpen(false)}>
+                      <Button className="w-full rounded-2xl bg-[var(--rechera-pink)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/80 transition-all duration-300">
+                        <User className="h-4 w-4 mr-2" />
+                        ログイン
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </SheetContent>
