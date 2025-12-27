@@ -1,6 +1,8 @@
-import path from 'path';
+'use strict';
 
-export default ({ env }) => {
+const path = require('path');
+
+module.exports = ({ env }) => {
   const client = env('DATABASE_CLIENT', 'postgres');
 
   const connections = {
