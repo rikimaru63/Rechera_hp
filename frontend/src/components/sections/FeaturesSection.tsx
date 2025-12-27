@@ -93,16 +93,6 @@ export default function FeaturesSection() {
           {features.map((feature, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="h-full bg-[var(--rechera-cream)] border-none rounded-3xl soft-shadow hover:soft-shadow-hover transition-all duration-300 hover:translate-y-[-4px] overflow-hidden">
-                {/* Feature Image */}
-                <div className="relative w-full h-48 overflow-hidden">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
                 <CardContent className="p-8">
                   {/* Number & Icon */}
                   <div className="flex items-center gap-4 mb-6">
@@ -122,6 +112,16 @@ export default function FeaturesSection() {
                     {feature.description}
                   </p>
                 </CardContent>
+
+                {/* Feature Image - Bottom */}
+                <div className="relative w-full h-52 overflow-hidden">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-contain object-center"
+                  />
+                </div>
               </Card>
             </motion.div>
           ))}
