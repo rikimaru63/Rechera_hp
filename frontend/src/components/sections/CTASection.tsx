@@ -49,7 +49,7 @@ export default function CTASection() {
                 size="lg"
                 className="rounded-2xl bg-[var(--rechera-pink)] text-[var(--rechera-text)] hover:bg-[var(--rechera-pink)]/80 px-10 py-7 text-lg font-medium transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg"
               >
-                Recheraについて詳しく見る
+                はじめのメッセージを受け取る
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
