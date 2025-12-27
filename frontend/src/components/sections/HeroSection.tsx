@@ -77,7 +77,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-16"
           >
             <Link href="/about">
               <Button
