@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { BookOpen, Users, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +12,7 @@ const features = [
     title: "体系的な学び",
     description:
       "物販からWeb・SNSマーケティングまで、今の自分に必要な順番で学べるカリキュラムを用意しています。",
+    image: "/images/feature-learning.png",
   },
   {
     icon: Users,
@@ -18,6 +20,7 @@ const features = [
     title: "居心地の良いコミュニティ",
     description:
       "Recheraは、競争したり、比べ合ったりする場所ではなく、アトリエのような、あたたかな空間で同じように考え、進んでいる仲間と自分のペースで成長していけます。",
+    image: "/images/feature-community.png",
   },
   {
     icon: Sparkles,
@@ -25,6 +28,7 @@ const features = [
     title: "個が輝く場所",
     description:
       "母でも、妻でも、何者かにならなくてもいい。「あなた」として、大切に扱われる場所です。経済的にも、気持ちの面でも、自分の人生を自分で選べる力を少しずつ育てていきます。",
+    image: "/images/feature-individual.png",
   },
 ];
 
@@ -88,7 +92,17 @@ export default function FeaturesSection() {
         >
           {features.map((feature, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Card className="h-full bg-[var(--rechera-cream)] border-none rounded-3xl soft-shadow hover:soft-shadow-hover transition-all duration-300 hover:translate-y-[-4px]">
+              <Card className="h-full bg-[var(--rechera-cream)] border-none rounded-3xl soft-shadow hover:soft-shadow-hover transition-all duration-300 hover:translate-y-[-4px] overflow-hidden">
+                {/* Feature Image */}
+                <div className="relative w-full h-48 overflow-hidden">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
                 <CardContent className="p-8">
                   {/* Number & Icon */}
                   <div className="flex items-center gap-4 mb-6">
