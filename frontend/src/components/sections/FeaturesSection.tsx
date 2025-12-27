@@ -92,8 +92,8 @@ export default function FeaturesSection() {
         >
           {features.map((feature, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Card className="h-full bg-[var(--rechera-cream)] border-none rounded-3xl soft-shadow hover:soft-shadow-hover transition-all duration-300 hover:translate-y-[-4px] overflow-hidden">
-                <CardContent className="p-8">
+              <Card className="h-full bg-[var(--rechera-cream)] border-none rounded-3xl soft-shadow hover:soft-shadow-hover transition-all duration-300 hover:translate-y-[-4px] overflow-hidden flex flex-col">
+                <CardContent className="p-8 flex-grow">
                   {/* Number & Icon */}
                   <div className="flex items-center gap-4 mb-6">
                     <span className="text-4xl font-bold text-[var(--rechera-pink)]/60" style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}>
@@ -113,13 +113,13 @@ export default function FeaturesSection() {
                   </p>
                 </CardContent>
 
-                {/* Feature Image - Bottom */}
-                <div className="relative w-full h-52 overflow-hidden">
+                {/* Feature Image - Bottom (always aligned) */}
+                <div className="relative w-full h-52 overflow-hidden mt-auto">
                   <Image
                     src={feature.image}
                     alt={feature.title}
                     fill
-                    className="object-contain object-center"
+                    className="object-cover object-center"
                   />
                 </div>
               </Card>
