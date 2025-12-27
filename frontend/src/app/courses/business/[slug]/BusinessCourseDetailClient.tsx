@@ -19,21 +19,21 @@ interface BusinessCourseDetailClientProps {
 
 // Zoom archive videos
 const zoomArchiveVideos = [
-  { title: "8月30日", youtubeUrl: "https://youtu.be/2eZC5inbeQE", year: "2023" },
-  { title: "9月24日", youtubeUrl: "https://youtu.be/OvNhlOurR-w", year: "2023" },
-  { title: "10月23日", youtubeUrl: "https://youtu.be/cdFEPEPh6SA", year: "2023" },
-  { title: "11月23日", youtubeUrl: "https://youtu.be/CPrMqdiN_54", year: "2023" },
-  { title: "12月27日", youtubeUrl: "https://youtu.be/83Gk5BJTJKE", year: "2023" },
-  { title: "2月26日", youtubeUrl: "https://youtu.be/NtEPxnHyJmc", year: "2024" },
-  { title: "3月27日", youtubeUrl: "https://youtu.be/xXtaJvZ5GLc", year: "2024" },
-  { title: "4月25日", youtubeUrl: "https://youtu.be/QIASQjfUqq0", year: "2024" },
-  { title: "5月27日", youtubeUrl: "https://youtu.be/w8JB2kqME68", year: "2024" },
-  { title: "7月29日", youtubeUrl: "https://youtu.be/xKeW9ZUmOQ8", year: "2024" },
-  { title: "8月30日", youtubeUrl: "https://youtu.be/55yAG7oxrqk", year: "2024" },
-  { title: "9月29日", youtubeUrl: "https://youtu.be/MT-6C_pIKZw", year: "2024" },
-  { title: "10月24日", youtubeUrl: "https://youtu.be/UB38gDPC_Qo", year: "2024" },
-  { title: "11月21日", youtubeUrl: "https://youtu.be/c5uv6UuHmC8", year: "2024" },
-  { title: "12月19日", youtubeUrl: "https://youtu.be/J_4T8XcLuhw", year: "2024" },
+  { title: "8月30日", youtubeUrl: "https://youtu.be/2eZC5inbeQE", year: "2024" },
+  { title: "9月24日", youtubeUrl: "https://youtu.be/OvNhlOurR-w", year: "2024" },
+  { title: "10月23日", youtubeUrl: "https://youtu.be/cdFEPEPh6SA", year: "2024" },
+  { title: "11月23日", youtubeUrl: "https://youtu.be/CPrMqdiN_54", year: "2024" },
+  { title: "12月27日", youtubeUrl: "https://youtu.be/83Gk5BJTJKE", year: "2024" },
+  { title: "2月26日", youtubeUrl: "https://youtu.be/NtEPxnHyJmc", year: "2025" },
+  { title: "3月27日", youtubeUrl: "https://youtu.be/xXtaJvZ5GLc", year: "2025" },
+  { title: "4月25日", youtubeUrl: "https://youtu.be/QIASQjfUqq0", year: "2025" },
+  { title: "5月27日", youtubeUrl: "https://youtu.be/w8JB2kqME68", year: "2025" },
+  { title: "7月29日", youtubeUrl: "https://youtu.be/xKeW9ZUmOQ8", year: "2025" },
+  { title: "8月30日", youtubeUrl: "https://youtu.be/55yAG7oxrqk", year: "2025" },
+  { title: "9月29日", youtubeUrl: "https://youtu.be/MT-6C_pIKZw", year: "2025" },
+  { title: "10月24日", youtubeUrl: "https://youtu.be/UB38gDPC_Qo", year: "2025" },
+  { title: "11月21日", youtubeUrl: "https://youtu.be/c5uv6UuHmC8", year: "2025" },
+  { title: "12月19日", youtubeUrl: "https://youtu.be/J_4T8XcLuhw", year: "2025" },
 ];
 
 export default function BusinessCourseDetailClient({
@@ -115,8 +115,35 @@ export default function BusinessCourseDetailClient({
               </p>
             </motion.div>
 
-            {/* 2024 Videos */}
+            {/* 2025 Videos */}
             <div className="mb-12">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-3 mb-6"
+              >
+                <Calendar className="w-5 h-5 text-[var(--rechera-pink)]" />
+                <h3 className="text-xl font-semibold text-[var(--rechera-text)]">
+                  2025年
+                </h3>
+              </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {zoomArchiveVideos
+                  .filter((v) => v.year === "2025")
+                  .map((video, index) => (
+                    <VideoCard
+                      key={index}
+                      title={`全体ZOOM ${video.title}`}
+                      youtubeUrl={video.youtubeUrl}
+                    />
+                  ))}
+              </div>
+            </div>
+
+            {/* 2024 Videos */}
+            <div>
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -132,33 +159,6 @@ export default function BusinessCourseDetailClient({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {zoomArchiveVideos
                   .filter((v) => v.year === "2024")
-                  .map((video, index) => (
-                    <VideoCard
-                      key={index}
-                      title={`全体ZOOM ${video.title}`}
-                      youtubeUrl={video.youtubeUrl}
-                    />
-                  ))}
-              </div>
-            </div>
-
-            {/* 2023 Videos */}
-            <div>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center gap-3 mb-6"
-              >
-                <Calendar className="w-5 h-5 text-[var(--rechera-pink)]" />
-                <h3 className="text-xl font-semibold text-[var(--rechera-text)]">
-                  2023年
-                </h3>
-              </motion.div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {zoomArchiveVideos
-                  .filter((v) => v.year === "2023")
                   .map((video, index) => (
                     <VideoCard
                       key={index}
