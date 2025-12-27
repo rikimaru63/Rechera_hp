@@ -119,7 +119,7 @@ export default function FeaturesSection() {
                     src={feature.image}
                     alt={feature.title}
                     fill
-                    className="object-cover object-center"
+                    className="object-contain object-bottom"
                   />
                 </div>
               </Card>
