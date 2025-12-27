@@ -3,8 +3,8 @@ FROM node:20-alpine AS builder
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git
 
 WORKDIR /opt/
-COPY package.json package-lock.json* ./
-RUN npm ci
+COPY package.json ./
+RUN npm install
 
 WORKDIR /opt/app
 COPY . .
