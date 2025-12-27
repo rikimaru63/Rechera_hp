@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,19 +21,22 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="space-y-8"
         >
-          {/* Rechera Logo - Large Centered */}
-          <motion.h1
+          {/* Rechera Logo - Large Centered Image */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-[var(--rechera-text)]"
-            style={{
-              fontFamily: "var(--font-poppins), Poppins, sans-serif",
-              textShadow: "0 4px 20px rgba(232, 204, 204, 0.3)"
-            }}
+            className="flex justify-center"
           >
-            Rechera
-          </motion.h1>
+            <Image
+              src="/images/rechera-logo.png"
+              alt="Rechera"
+              width={500}
+              height={150}
+              className="w-[280px] sm:w-[350px] md:w-[450px] lg:w-[500px] h-auto"
+              priority
+            />
+          </motion.div>
 
           {/* Main Tagline */}
           <motion.p
