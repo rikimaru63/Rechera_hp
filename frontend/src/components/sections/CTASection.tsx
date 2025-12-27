@@ -25,7 +25,7 @@ export default function CTASection() {
           {/* Heading */}
           <h2 className="text-[var(--rechera-text)]">
             あなたらしい働き方を、
-            <br className="sm:hidden" />
+            <br />
             一緒に見つけませんか？
           </h2>
 
