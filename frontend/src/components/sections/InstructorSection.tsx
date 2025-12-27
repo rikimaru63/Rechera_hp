@@ -98,6 +98,8 @@ export default function InstructorSection() {
                       src={currentItem.src}
                       className="w-full h-full object-contain"
                       controls
+                      autoPlay
+                      muted
                       playsInline
                       onPlay={() => setIsAutoPlaying(false)}
                       onPause={() => setIsAutoPlaying(true)}
